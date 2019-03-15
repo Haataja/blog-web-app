@@ -1,0 +1,10 @@
+.Blog-names{
+    min-height: 100vh;
+    color:#ffffff;
+    float: left;
+    text-align: justify;
+    background: #462255;
+}
+ul {
+    list-style-type: none;
+}

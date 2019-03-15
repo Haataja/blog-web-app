@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListItem from "./ListItem";
+import './BlogAndSide.css';
 
 class BlogAndSide extends Component{
   BASE_URL ='http://localhost:8080/posts';
@@ -34,7 +35,7 @@ class BlogAndSide extends Component{
     console.log(this.state.titles);
     if(this.state.current !== -1){
       return <div>
-        <ul>{this.state.titles}</ul>
+        <ul className="Blog-names">{this.state.titles}</ul>
         <div>
           <h1>{this.state.blogs[this.state.current].title}</h1>
           <p>{this.state.blogs[this.state.current].post.split('\n').map((item, key) => (<span key={key}>{item}<br/></span>))}</p>
