@@ -3,9 +3,20 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+  #animation: App-logo-spin infinite 20s linear;
+  width: 100%;
   pointer-events: none;
+}
+
+.navbar {
+  max-width: 100%;
+  border: #B5D4EC 2px solid;
+  height: 70px;
+  background-color: #E4F1FB;
+}
+
+.banner {
+  height: 180px;
 }
 
 .App-header {

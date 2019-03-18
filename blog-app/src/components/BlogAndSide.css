@@ -1,10 +1,23 @@
 .Blog-names{
     min-height: 100vh;
-    color:#ffffff;
+    width: 25%;
+    color:#000000;
     float: left;
     text-align: justify;
-    background: #462255;
+    background: #E6E6FC;
 }
 ul {
     list-style-type: none;
+}
+
+.title-and-text{
+    float: right;
+    #border: red 1px solid;
+    text-align: justify;
+    width: 70%;
+    padding-left: 25px;
+}
+
+.page{
+    padding-top: 60px;
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import banner from './img/logo.png';
 import './App.css';
 import BlogAndSide from "./components/BlogAndSide";
 
@@ -8,6 +8,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <img src={banner} className="banner" alt="logo" />
+          <div className="navbar"></div>
           <BlogAndSide/>
         </header>
       </div>
