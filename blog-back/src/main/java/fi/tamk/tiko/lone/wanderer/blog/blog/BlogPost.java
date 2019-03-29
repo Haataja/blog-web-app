@@ -12,29 +12,49 @@ package fi.tamk.tiko.lone.wanderer.blog.blog;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Entity
 public class BlogPost {
     @Id
     @GeneratedValue
     private long id;
-
     private LocalDate creationDate;
-    @Column(columnDefinition="LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String post;
     private String title;
     private String author;
     private int likes;
+    @OneToMany(mappedBy = "blogPost",cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Comment.class)
+    private Collection<Comment> commentList;
 
-    public BlogPost(){
+    public BlogPost() {
         setCreationDate(LocalDate.now());
+        commentList = new ArrayList<>();
     }
 
-    public BlogPost(String post, String title, String author){
+    public BlogPost(String post, String title, String author, Comment... comments) {
         setAuthor(author);
         setCreationDate(LocalDate.now());
         setPost(post);
         setTitle(title);
+        this.commentList = Stream.of(comments).collect(Collectors.toList());
+        this.commentList.forEach(x -> x.setBlogPost(this));
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public Collection<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(Collection<Comment> commentList) {
+        this.commentList = commentList;
     }
 
     public LocalDate getCreationDate() {

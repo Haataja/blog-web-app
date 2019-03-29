@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import banner from './img/logo.png';
-import './App.css';
+import React, {Component} from 'react';
+//import './App.css';
+import Login from "./components/Login";
 import BlogAndSide from "./components/BlogAndSide";
 
 class App extends Component {
@@ -8,10 +8,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={banner} className="banner" alt="logo" />
-          <div className="navbar"></div>
-          <BlogAndSide/>
         </header>
+        <BlogAndSide/>
+
       </div>
     );
   }

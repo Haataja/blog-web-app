@@ -12,18 +12,38 @@ package fi.tamk.tiko.lone.wanderer.blog.rest;
 
 import fi.tamk.tiko.lone.wanderer.blog.blog.BlogPost;
 import fi.tamk.tiko.lone.wanderer.blog.blog.BlogRepository;
+import fi.tamk.tiko.lone.wanderer.blog.blog.Comment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BlogController {
+    Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private BlogRepository blogRepository;
 
 
     @RequestMapping("/posts")
-    public Iterable<BlogPost> getPosts(){
-        return blogRepository.findAllByOrderByIdDesc();
+    public ResponseEntity<Iterable<BlogPost>> getPosts(){
+        return new ResponseEntity<>(blogRepository.findAllByOrderByIdDesc(), HttpStatus.OK);
+    }
+
+    @PostMapping("/comment/{id}")
+    public ResponseEntity<?> addComment(@PathVariable long id,@RequestBody Comment comment){
+        log.debug("id: {} and comment {}", id, comment.toString());
+        if(blogRepository.findById(id).isPresent()){
+            log.debug("Got the post!");
+            BlogPost blogPost = blogRepository.findById(id).get();
+            comment.setBlogPost(blogPost);
+            blogPost.getCommentList().add(comment);
+            blogRepository.save(blogPost);
+            return new ResponseEntity<>(comment,HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(comment,HttpStatus.NOT_FOUND);
+        }
     }
 }

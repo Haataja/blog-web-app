@@ -2,6 +2,7 @@ package fi.tamk.tiko.lone.wanderer.blog;
 
 import fi.tamk.tiko.lone.wanderer.blog.blog.BlogPost;
 import fi.tamk.tiko.lone.wanderer.blog.blog.BlogRepository;
+import fi.tamk.tiko.lone.wanderer.blog.blog.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -185,7 +186,7 @@ public class DataLoader implements ApplicationRunner {
                 "laine lapsen lennättävi, \n" +
                 "veto alla, tuulo päällä, \n" +
                 "neito keskellä asuvi.”","Meren neito ja metsän sulho","Kanteletar"));
-        list.add(new BlogPost("Sanoi seppo Ilmarinen: \"Oisi tuo sorea neito, \n" +
+        BlogPost kalevala = new BlogPost("Sanoi seppo Ilmarinen: \"Oisi tuo sorea neito, \n" +
                 "kun oisi sanallisena, mielellisnä, kielellisnä.\"\n" +
                 "Saattoi siitä neitosensa utuisehen uutimehen, \n" +
                 "pehme'ille pääaloille, sulkkuisille vuotehille.\n" +
@@ -230,7 +231,12 @@ public class DataLoader implements ApplicationRunner {
                 "ollette elonkeraiset elikkä elottomatki, \n" +
                 "sinä ilmoisna ikänä, kuuna kullan valkeana \n" +
                 "naista kullaista kosiko, hope'ista huolitelko! \n" +
-                "Kylmän kulta kuumottavi, vilun huohtavi hopea.\"","Katkelma 37. runosta","Kalevala"));
+                "Kylmän kulta kuumottavi, vilun huohtavi hopea.\"", "Katkelma 37. runosta", "Kalevala",
+                new Comment("Very good poem this is.","good","Seppo Ilmarinen"),
+                new Comment("Did not like","did not like","Maiden of the north"),
+                new Comment("Too long, add tl:dr please.","Too long","Did not read"));
+
+        list.add(kalevala);
         list.add(new BlogPost(" \"Mie olen hirven hiihannassa,\n" +
                 "Jalopeuran jaksannassa,\n" +
                 "Kaikk' on kenkäni kulunna,\n" +

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ListItem from "./ListItem";
-import './BlogAndSide.css';
+import CommentForm from "./CommentForm";
+//import './BlogAndSide.css';
 
 class BlogAndSide extends Component {
   BASE_URL = 'http://localhost:8080/posts';
@@ -41,13 +42,15 @@ class BlogAndSide extends Component {
       return <div className="page">
         <div className="title-and-text">
           <h1>{this.state.blogs[this.state.current].title}</h1>
+          <h3>{this.state.blogs[this.state.current].author}</h3>
           <p>{this.state.blogs[this.state.current].post.split('\n').map((item, key) => (
             <span key={key}>{item}<br/></span>))}</p>
         </div>
         <div className="Blog-names">
           <ul>{this.state.titles}</ul>
         </div>
-      </div>;
+        <CommentForm blogId={this.state.blogs[this.state.current].id}/>
+      </div>
     } else {
       return <h1>Loading</h1>;
     }
