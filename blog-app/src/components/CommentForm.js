@@ -8,6 +8,7 @@ class CommentForm  extends Component{
     super(props);
     this.state = {};
     this.blogId = props.blogId;
+    this.clickedFunction = props.buttonClicked;
     this.clicked = this.clicked.bind(this);
     this.typing = this.typing.bind(this);
   }
@@ -15,7 +16,7 @@ class CommentForm  extends Component{
   clicked(event){
     console.log("Data sent to " + this.blogId);
     this.postData(this.BASE_URL +'comment/' + this.blogId,{'commentTitle': this.state.commentTitle,
-      'commentField':this.state.commentField, 'nickname':this.state.nickname});
+      'commentField':this.state.commentField, 'nickname':this.state.nickname}).then(this.clickedFunction);
   }
 
   typing(event){
@@ -41,6 +42,7 @@ class CommentForm  extends Component{
   }
 
   render(){
+    this.blogId = this.props.blogId;
     return <div><form>
       <div><label> Title : <input onInput={this.typing} type="text" name="commentTitle"/> </label></div>
     <div><label> Comment : <input onInput={this.typing} type="text" name="commentField"/> </label></div>

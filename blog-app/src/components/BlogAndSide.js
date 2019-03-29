@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ListItem from "./ListItem";
 import CommentForm from "./CommentForm";
+import CommentList from "./CommentList";
 //import './BlogAndSide.css';
 
 class BlogAndSide extends Component {
@@ -23,7 +24,7 @@ class BlogAndSide extends Component {
       let state = {
         'blogs': json,
         'titles': json.map((i, index) => <ListItem key={i.id} name={i.title} listId={index} click={this.change}/>),
-        'current': 0
+        'current': this.state.current === -1 ? 0: this.state.current
       };
       //console.log('here '  + state.blogs[0].id);
       this.setState(state);
@@ -37,8 +38,8 @@ class BlogAndSide extends Component {
   }
 
   render() {
-    console.log(this.state.titles);
     if (this.state.current !== -1) {
+      console.log(this.state.blogs[this.state.current].commentList);
       return <div className="page">
         <div className="title-and-text">
           <h1>{this.state.blogs[this.state.current].title}</h1>
@@ -49,7 +50,8 @@ class BlogAndSide extends Component {
         <div className="Blog-names">
           <ul>{this.state.titles}</ul>
         </div>
-        <CommentForm blogId={this.state.blogs[this.state.current].id}/>
+        <CommentForm blogId={this.state.blogs[this.state.current].id} buttonClicked={this.updateList}/>
+        <CommentList list={this.state.blogs[this.state.current].commentList}/>
       </div>
     } else {
       return <h1>Loading</h1>;
