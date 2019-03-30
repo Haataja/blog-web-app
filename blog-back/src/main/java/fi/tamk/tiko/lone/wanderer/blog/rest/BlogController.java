@@ -32,6 +32,31 @@ public class BlogController {
         return new ResponseEntity<>(blogRepository.findAllByOrderByIdDesc(), HttpStatus.OK);
     }
 
+    @PostMapping("/posts/add")
+    public ResponseEntity<?> addPost(@RequestBody BlogPost blogPost){
+        return new ResponseEntity<>(blogRepository.save(blogPost), HttpStatus.OK);
+    }
+
+    @RequestMapping("/posts/delete/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable long id){
+        if(blogRepository.findById(id).isPresent()){
+            blogRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/posts/modify/{id}")
+    public ResponseEntity<?> modifyPost(@PathVariable long id, @RequestBody BlogPost blogPost){
+        if(blogRepository.findById(id).isPresent()){
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/comment/{id}")
     public ResponseEntity<?> addComment(@PathVariable long id,@RequestBody Comment comment){
         log.debug("id: {} and comment {}", id, comment.toString());
@@ -45,5 +70,24 @@ public class BlogController {
         } else {
             return new ResponseEntity<>(comment,HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping("/comment/delete/{postID}")
+    public ResponseEntity<?> deleteComment(@PathVariable long postID, @RequestParam long commentId){
+        if(blogRepository.findById(postID).isPresent()){
+            BlogPost blogPost = blogRepository.findById(postID).get();
+            blogPost.getCommentList().removeIf(c -> c.getId() == commentId);
+            blogRepository.save(blogPost);
+            return new ResponseEntity<>(blogPost,HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(postID,HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    @RequestMapping("/auth")
+    public ResponseEntity<?> getAuth(){
+        log.debug("Auth!");
+        return new ResponseEntity<>("ok",HttpStatus.OK);
     }
 }

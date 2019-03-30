@@ -1,14 +1,30 @@
 import React, {Component} from "react";
 
 class CommentList  extends Component{
+  BASE_URL = 'http://localhost:8080/comment/delete/';
   constructor(props){
     super(props);
-    this.list =props.list.map(i => <tr key={i.id}><td>{i.nickname}</td><td>{i.commentTitle}</td><td>{i.commentField}</td></tr>);
+    this.blogId = props.blogId;
+    this.deleteComment = this.deleteComment.bind(this);
+  }
+
+
+  deleteComment(event){
+    console.log(event.target.id);
+    console.log(this.BASE_URL + this.blogId + '?commentID=' +event.target.id);
+    fetch(this.BASE_URL + this.blogId + '?commentID=' +event.target.id).then(http => http.json()).then(json => {
+      console.log(json);
+    })
   }
 
   render(){
-    this.list = this.props.list.map(i => <tr key={i.id}><td>{i.nickname}</td><td>{i.commentTitle}</td><td>{i.commentField}</td></tr>);
-    return <table><tbody>{this.list}</tbody></table>
+    if(this.props.auth){
+      this.list = this.props.list.map(comment =><li key={comment.id}><h4>{comment.commentTitle}</h4> <p>{comment.commentField}</p><p>{comment.nickname}</p>
+        <button onClick={this.deleteComment} id={comment.id}>delete</button></li>);
+    } else {
+      this.list = this.props.list.map(comment =><li key={comment.id}><h4>{comment.commentTitle}</h4> <p>{comment.commentField}</p><p>{comment.nickname}</p></li>);
+    }
+    return <ul>{this.list}</ul>
   }
 }
 
