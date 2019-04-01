@@ -14,6 +14,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -28,8 +29,8 @@ public class BlogPost {
     private String title;
     private String author;
     private int likes;
-    @OneToMany(mappedBy = "blogPost",cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Comment.class)
-    private Collection<Comment> commentList;
+    @OneToMany(mappedBy = "blogPost",cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Comment.class, orphanRemoval=true)
+    private List<Comment> commentList;
 
     public BlogPost() {
         setCreationDate(LocalDate.now());
@@ -49,11 +50,11 @@ public class BlogPost {
         this.likes = likes;
     }
 
-    public Collection<Comment> getCommentList() {
+    public List<Comment> getCommentList() {
         return commentList;
     }
 
-    public void setCommentList(Collection<Comment> commentList) {
+    public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
     }
 

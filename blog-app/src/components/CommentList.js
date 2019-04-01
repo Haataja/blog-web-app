@@ -11,10 +11,8 @@ class CommentList  extends Component{
 
   deleteComment(event){
     console.log(event.target.id);
-    console.log(this.BASE_URL + this.blogId + '?commentID=' +event.target.id);
-    fetch(this.BASE_URL + this.blogId + '?commentID=' +event.target.id).then(http => http.json()).then(json => {
-      console.log(json);
-    })
+    console.log(this.BASE_URL + this.blogId + '?commentId=' +event.target.id);
+    fetch(this.BASE_URL + this.blogId + '?commentId=' +event.target.id).then(http => http.json())
   }
 
   render(){

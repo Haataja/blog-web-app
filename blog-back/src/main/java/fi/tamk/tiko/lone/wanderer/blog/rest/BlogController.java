@@ -41,9 +41,9 @@ public class BlogController {
     public ResponseEntity<?> deletePost(@PathVariable long id){
         if(blogRepository.findById(id).isPresent()){
             blogRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("ok",HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("error",HttpStatus.NOT_FOUND);
         }
     }
 
@@ -72,7 +72,7 @@ public class BlogController {
         }
     }
 
-    @PostMapping("/comment/delete/{postID}")
+    @RequestMapping("/comment/delete/{postID}")
     public ResponseEntity<?> deleteComment(@PathVariable long postID, @RequestParam long commentId){
         if(blogRepository.findById(postID).isPresent()){
             BlogPost blogPost = blogRepository.findById(postID).get();
