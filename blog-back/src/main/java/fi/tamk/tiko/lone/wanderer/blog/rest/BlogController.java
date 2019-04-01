@@ -37,6 +37,20 @@ public class BlogController {
         return new ResponseEntity<>(blogRepository.save(blogPost), HttpStatus.OK);
     }
 
+    @PostMapping("/posts/modify/{id}")
+    public ResponseEntity<?> modifyPost(@RequestBody BlogPost blogPost, @PathVariable long id){
+        //log.debug("POST: {}", blogPost.getPost());
+        if(blogRepository.findById(id).isPresent()){
+            BlogPost firstBlogPost = blogRepository.findById(id).get();
+            firstBlogPost.setAuthor(blogPost.getAuthor());
+            firstBlogPost.setPost(blogPost.getPost());
+            firstBlogPost.setTitle(blogPost.getTitle());
+            return new ResponseEntity<>(blogRepository.save(firstBlogPost), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(blogPost, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @RequestMapping("/posts/delete/{id}")
     public ResponseEntity<?> deletePost(@PathVariable long id){
         if(blogRepository.findById(id).isPresent()){
@@ -44,16 +58,6 @@ public class BlogController {
             return new ResponseEntity<>("ok",HttpStatus.OK);
         } else {
             return new ResponseEntity<>("error",HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @PostMapping("/posts/modify/{id}")
-    public ResponseEntity<?> modifyPost(@PathVariable long id, @RequestBody BlogPost blogPost){
-        if(blogRepository.findById(id).isPresent()){
-
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

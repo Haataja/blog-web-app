@@ -4,6 +4,7 @@ import CommentForm from "./CommentForm";
 import CommentList from "./CommentList";
 import Login from "./Login";
 import BlogPostForm from "./BlogPostForm";
+import Modify from "./Modify";
 //import './BlogAndSide.css';
 
 class BlogAndSide extends Component {
@@ -11,14 +12,19 @@ class BlogAndSide extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {'blogs': '', 'current': -1, 'auth': props.auth};
+    this.state = {'blogs': '', 'current': -1, 'auth': props.auth, 'modify': false};
     this.updateList = this.updateList.bind(this);
     this.change = this.change.bind(this);
+    this.toggleModify = this.toggleModify.bind(this);
   }
 
   componentDidMount() {
     this.updateList();
     //this.checkLogIn();
+  }
+
+  toggleModify(){
+    this.setState({'modify': !this.state.modify});
   }
 
   updateList() {
@@ -65,6 +71,7 @@ class BlogAndSide extends Component {
               <CommentList blogId={this.state.blogs[this.state.current].id} auth={this.state.auth} list={this.state.blogs[this.state.current].commentList}/>
             </div>
           } else {
+            let id = this.state.blogs[this.state.current].id;
             return <div className="page">
               <Login auth={this.state.auth}/>
               <div className="title-and-text">
@@ -73,11 +80,13 @@ class BlogAndSide extends Component {
                 <p>{this.state.blogs[this.state.current].post.split('\n').map((item, key) => (
                   <span key={key}>{item}<br/></span>))}</p>
               </div>
+              <button onClick={this.toggleModify}>Modify</button>
+              <Modify modify={this.state.modify} blog={this.state.blogs[this.state.current]} blogId={id} update={this.updateList}/>
               <div className="Blog-names">
                 <ul>{this.state.titles}</ul>
               </div>
-              <CommentForm blogId={this.state.blogs[this.state.current].id} buttonClicked={this.updateList}/>
-              <CommentList update={this.updateList} blogId={this.state.blogs[this.state.current].id} auth={this.state.auth} list={this.state.blogs[this.state.current].commentList}/>
+              <CommentForm blogId={id} buttonClicked={this.updateList}/>
+              <CommentList update={this.updateList} blogId={id} auth={this.state.auth} list={this.state.blogs[this.state.current].commentList}/>
               <BlogPostForm update={this.updateList}/>
             </div>
           }

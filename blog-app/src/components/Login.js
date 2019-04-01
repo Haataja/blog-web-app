@@ -21,7 +21,7 @@ class Login  extends Component{
   render(){
     this.auth = this.props.auth;
     if(this.auth){
-      return < Link to="/logout" onClick={this.clicked}>Logout</Link>;
+      return <Link to="/logout" onClick={this.clicked}>Logout</Link>;
     } else {
       return <Link to="/login"  onClick={this.clicked}>Login</Link>;
     }
