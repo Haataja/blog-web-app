@@ -16,7 +16,7 @@ class BlogPostForm extends Component{
   clicked(event){
     console.log("Data sent to back");
     this.postData(this.BASE_URL +'posts/add',{'title': this.state.title,
-      'post':this.state.post, 'author':this.state.author}).then(this.clickedFunction);
+      'post':this.state.post, 'author':this.state.author}).then(this.props.update);
   }
 
   typing(event){

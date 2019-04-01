@@ -14,7 +14,6 @@ class BlogAndSide extends Component {
     this.state = {'blogs': '', 'current': -1, 'auth': props.auth};
     this.updateList = this.updateList.bind(this);
     this.change = this.change.bind(this);
-    this.toggleAuth = this.toggleAuth.bind(this);
   }
 
   componentDidMount() {
@@ -27,7 +26,7 @@ class BlogAndSide extends Component {
       console.log(json);
       let state = {
         'blogs': json,
-        'titles': json.map((i, index) => <ListItem auht={this.state.auth} key={i.id} name={i.title} id={i.id} listId={index} click={this.change}/>),
+        'titles': json.map((i, index) => <ListItem auht={this.state.auth} key={i.id} name={i.title} id={i.id} listId={index} click={this.change} update={this.updateList}/>),
         'current': this.state.current === -1 ? 0: this.state.current
       };
       //console.log('here '  + state.blogs[0].id);
@@ -35,9 +34,6 @@ class BlogAndSide extends Component {
     });
   }
 
-  toggleAuth(){
-    this.setState({'auth':!this.state.auth});
-  }
 
   /*checkLogIn(){
     fetch(this.BASE_URL + '/auth',{mode: 'no-cors'}).then(http =>http.json()).then(() =>this.setState({'auth':true})).catch((e) => this.setState({'auth':false}))
@@ -51,7 +47,6 @@ class BlogAndSide extends Component {
   }
 
   render() {
-    console.log(this.state.titles);
     if (this.state.current !== -1) {
       //console.log(this.state.blogs[this.state.current].commentList);
           if(!this.state.auth){
@@ -82,8 +77,8 @@ class BlogAndSide extends Component {
                 <ul>{this.state.titles}</ul>
               </div>
               <CommentForm blogId={this.state.blogs[this.state.current].id} buttonClicked={this.updateList}/>
-              <CommentList blogId={this.state.blogs[this.state.current].id} auth={this.state.auth} list={this.state.blogs[this.state.current].commentList}/>
-              <BlogPostForm/>
+              <CommentList update={this.updateList} blogId={this.state.blogs[this.state.current].id} auth={this.state.auth} list={this.state.blogs[this.state.current].commentList}/>
+              <BlogPostForm update={this.updateList}/>
             </div>
           }
 

@@ -13,7 +13,6 @@ public class BaseController {
 
     @RequestMapping(value = {"/", "/admin"})
     public ModelAndView getLoginInfo() {
-        log.debug("HEre");
         return new ModelAndView("index.html");
     }
 }

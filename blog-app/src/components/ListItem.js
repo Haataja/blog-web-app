@@ -15,14 +15,12 @@ class ListItem  extends Component{
   }
 
   deletePost(){
-    fetch(this.BASE_URL + this.props.id).then(http => http.json()).then(json => {
-      console.log(json);
-    })
+    fetch(this.BASE_URL + this.props.id).then(this.props.update).catch((e) => console.log(e));
   }
 
   render(){
     if (this.props.auht){
-      return <li onClick={this.clicked}>{this.props.name} <button onClick={this.deletePost}>delete</button></li>
+      return <li> <span onClick={this.clicked}>{this.props.name}</span> <button onClick={this.deletePost}>delete</button></li>
     } else {
       return <li onClick={this.clicked}>{this.props.name}</li>
     }
