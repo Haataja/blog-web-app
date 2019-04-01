@@ -1,6 +1,7 @@
 package fi.tamk.tiko.lone.wanderer.blog.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,9 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/posts").permitAll()
                 .antMatchers("/comment/*").permitAll()
+                .antMatchers("/admin").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/")
+                .formLogin().defaultSuccessUrl("/admin")
                 .and()
                 .logout().logoutSuccessUrl("/")
                 .invalidateHttpSession(true)

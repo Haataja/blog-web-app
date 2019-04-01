@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 
 
 class Login  extends Component{
 
   constructor(props){
     super(props);
-    this.state = {};
+    this.state = {auth: false};
     this.auth = props.auth;
     this.clicked = this.clicked.bind(this);
   }
@@ -20,9 +21,9 @@ class Login  extends Component{
   render(){
     this.auth = this.props.auth;
     if(this.auth){
-      return <a href="/logout" onClick={this.clicked}>Logout</a>;
+      return < Link to="/logout" onClick={this.clicked}>Logout</Link>;
     } else {
-      return <a href="/login"  onClick={this.clicked}>Login</a>;
+      return <Link to="/login"  onClick={this.clicked}>Login</Link>;
     }
 
   }
