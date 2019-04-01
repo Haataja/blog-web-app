@@ -87,11 +87,4 @@ public class BlogController {
             return new ResponseEntity<>(postID,HttpStatus.NOT_FOUND);
         }
     }
-
-
-    @RequestMapping("/auth")
-    public ResponseEntity<?> getAuth(){
-        log.debug("Auth!");
-        return new ResponseEntity<>("ok",HttpStatus.OK);
-    }
 }

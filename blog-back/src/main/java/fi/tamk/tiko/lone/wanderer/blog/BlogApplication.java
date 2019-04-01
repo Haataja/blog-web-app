@@ -18,6 +18,16 @@ public class BlogApplication {
         log.info("INSTRUCTIONS");
         log.info("------------");
         log.info("GET all blog posts curl -X GET {}{}",BASEURL,RESOURCE);
+        log.info("------------");
+        log.info("Add post curl -X POST -d {'title': '','post': '', 'author':''} {}{}",BASEURL,RESOURCE + "/add");
+        log.info("------------");
+        log.info("Modify post curl -X POST -d {'title': '','post': '', 'author':''} {}{}",BASEURL,RESOURCE+"/modify/{id}");
+        log.info("------------");
+        log.info("Delete post curl -X GET {}{}",BASEURL,RESOURCE + "/delete/{id}");
+        log.info("------------");
+        log.info("Add comment to post curl -X POST -d 'commentTitle': '','commentField':'', 'nickname':''} {}{}",BASEURL,"comment/add/{postID}");
+        log.info("------------");
+        log.info("Delete comment from post curl -X GET {}{}",BASEURL,"/comment/delete/{postID}");
     }
 
 }
