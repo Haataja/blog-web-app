@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-
+import "./Login.css";
 
 class Login  extends Component{
 
@@ -21,9 +21,13 @@ class Login  extends Component{
   render(){
     this.auth = this.props.auth;
     if(this.auth){
-      return <Link to="/logout" onClick={this.clicked}>Logout</Link>;
+      return <div className="login-button"><button>
+        <Link style={{display: 'block', height: '100%'}} to="/logout" onClick={this.clicked}>Logout</Link>
+      </button></div>;
     } else {
-      return <Link to="/login"  onClick={this.clicked}>Login</Link>;
+      return <div className="login-button"><button>
+        <Link to="/login"  onClick={this.clicked}>Login</Link>
+      </button></div>;
     }
 
   }

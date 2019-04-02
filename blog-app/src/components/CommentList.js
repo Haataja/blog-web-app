@@ -17,6 +17,7 @@ class CommentList  extends Component{
   }
 
   render(){
+    this.blogId = this.props.blogId;
     if(this.props.auth){
       this.list = this.props.list.map(comment =><li key={comment.id}><h4>{comment.commentTitle}</h4> <p>{comment.commentField}</p><p>{comment.nickname}</p>
         <button onClick={this.deleteComment} id={comment.id}>delete</button></li>);

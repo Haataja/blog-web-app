@@ -29,11 +29,11 @@ class BlogAndSide extends Component {
 
   updateList() {
     fetch(this.BASE_URL + '/posts').then(http => http.json()).then(json => {
-      console.log(json);
       let state = {
         'blogs': json,
         'titles': json.map((i, index) => <ListItem auht={this.state.auth} key={i.id} name={i.title} id={i.id} listId={index} click={this.change} update={this.updateList}/>),
-        'current': this.state.current === -1 ? 0: this.state.current
+        'current': this.state.current === -1 ? 0: this.state.current,
+        'modify':false
       };
       //console.log('here '  + state.blogs[0].id);
       this.setState(state);
@@ -67,7 +67,7 @@ class BlogAndSide extends Component {
               <div className="Blog-names">
                 <ul>{this.state.titles}</ul>
               </div>
-              <CommentForm blogId={this.state.blogs[this.state.current].id} buttonClicked={this.updateList}/>
+              <CommentForm style={{clear: 'both'}} blogId={this.state.blogs[this.state.current].id} buttonClicked={this.updateList}/>
               <CommentList blogId={this.state.blogs[this.state.current].id} auth={this.state.auth} list={this.state.blogs[this.state.current].commentList}/>
             </div>
           } else {

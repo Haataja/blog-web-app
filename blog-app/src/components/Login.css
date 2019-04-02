@@ -1,0 +1,27 @@
+.login-button button{
+    background-color: #b5d4ec;
+    border-radius: 4px;
+    border: none;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.login-button{
+    border: #61dafb solid 1px;
+    background-color: #b5d4ec;
+}
+
+
+
+.login-button button:hover {
+    background-color: #4CAF50;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}

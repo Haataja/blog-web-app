@@ -16,7 +16,8 @@ class BlogPostForm extends Component{
   clicked(event){
     console.log("Data sent to back");
     this.postData(this.BASE_URL +'posts/add',{'title': this.state.title,
-      'post':this.state.post, 'author':this.state.author}).then(this.props.update);
+      'post':this.state.post, 'author':this.state.author}).then(this.props.update)
+      .then(this.setState({title:'',post:'',author:''}));
   }
 
   typing(event){
@@ -44,9 +45,9 @@ class BlogPostForm extends Component{
   render(){
     this.blogId = this.props.blogId;
     return <div><form>
-      <div><label> Title : <input onInput={this.typing} type="text" name="title"/> </label></div>
-    <div><label> post : <input onInput={this.typing} type="text" name="post"/> </label></div>
-      <div><label>author : <input onInput={this.typing} type="text" name="author"/> </label></div>
+      <div><label> Title : <input onInput={this.typing} type="text" name="title" value={this.state.title}/> </label></div>
+    <div><label> post : <input onInput={this.typing} type="text" name="post" value={this.state.post}/> </label></div>
+      <div><label>author : <input onInput={this.typing} type="text" name="author" value={this.state.author}/> </label></div>
     </form>
       <div><button onClick={this.clicked}>Send</button></div> </div>
 

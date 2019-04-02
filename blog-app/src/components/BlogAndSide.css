@@ -5,7 +5,9 @@
     float: left;
     text-align: justify;
     background: #E6E6FC;
+    position: static;
 }
+
 ul {
     list-style-type: none;
 }
@@ -16,6 +18,7 @@ ul {
     text-align: justify;
     width: 70%;
     padding-left: 25px;
+    position: static;
 }
 
 .page{

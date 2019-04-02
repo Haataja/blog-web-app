@@ -16,7 +16,8 @@ class CommentForm  extends Component{
   clicked(event){
     console.log("Data sent to " + this.blogId);
     this.postData(this.BASE_URL +'comment/' + this.blogId,{'commentTitle': this.state.commentTitle,
-      'commentField':this.state.commentField, 'nickname':this.state.nickname}).then(this.clickedFunction);
+      'commentField':this.state.commentField, 'nickname':this.state.nickname}).then(this.clickedFunction)
+      .then(this.setState({commentField:'',commentTitle:'',nickname:''}));
   }
 
   typing(event){
@@ -44,9 +45,9 @@ class CommentForm  extends Component{
   render(){
     this.blogId = this.props.blogId;
     return <div><form>
-      <div><label> Title : <input onInput={this.typing} type="text" name="commentTitle"/> </label></div>
-    <div><label> Comment : <input onInput={this.typing} type="text" name="commentField"/> </label></div>
-      <div><label>Nickname : <input onInput={this.typing} type="text" name="nickname"/> </label></div>
+      <div><label> Title : <input onInput={this.typing} type="text" name="commentTitle" value={this.state.commentTitle}/> </label></div>
+    <div><label> Comment : <input onInput={this.typing} type="text" name="commentField" value={this.state.commentField}/> </label></div>
+      <div><label>Nickname : <input onInput={this.typing} type="text" name="nickname" value={this.state.nickname}/> </label></div>
     </form>
       <div><button onClick={this.clicked}>Send</button></div> </div>
 

@@ -6,7 +6,7 @@ class Modify extends Component{
 
   constructor(props){
     super(props);
-    this.state = {'title': props.blog.title,'post':props.blog.post, 'author': props.blog.author};
+    this.state = {};
     this.blogId = props.blogId;
     this.clickedFunction = props.buttonClicked;
     this.clicked = this.clicked.bind(this);
@@ -15,8 +15,9 @@ class Modify extends Component{
 
   clicked(event){
     console.log("Data sent to back " + this.blogId);
-    this.postData(this.BASE_URL +'posts/modify/' + this.blogId,{'title': this.state.title,
-      'post':this.state.post, 'author':this.state.author}).then(this.props.update);
+    this.postData(this.BASE_URL +'posts/modify/' + this.blogId,{'title': this.state.title === undefined ? this.props.blog.title: this.state.title,
+      'post':this.state.post === undefined ? this.props.blog.post: this.state.post,
+      'author':this.state.author === undefined ? this.props.blog.author: this.state.author}).then(this.props.update);
   }
 
   typing(event){
@@ -43,6 +44,7 @@ class Modify extends Component{
 
   render(){
     this.blogId = this.props.blogId;
+
     if(this.props.modify){
       return <div><form>
         <div><label> Title : <input onInput={this.typing} type="text" name="title" defaultValue={this.props.blog.title}/> </label></div>
