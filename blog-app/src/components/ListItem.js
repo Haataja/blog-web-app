@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
 
 
 class ListItem  extends Component{
@@ -20,7 +23,7 @@ class ListItem  extends Component{
 
   render(){
     if (this.props.auht){
-      return <li> <span onClick={this.clicked}>{this.props.name}</span> <button onClick={this.deletePost}>delete</button></li>
+      return <li><Row> <Col onClick={this.clicked}>{this.props.name}</Col> <Col><Button variant="danger" onClick={this.deletePost}>delete</Button></Col></Row></li>
     } else {
       return <li onClick={this.clicked}>{this.props.name}</li>
     }

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 
 
 class CommentForm  extends Component{
@@ -44,12 +47,19 @@ class CommentForm  extends Component{
 
   render(){
     this.blogId = this.props.blogId;
-    return <div><form>
-      <div><label> Title : <input onInput={this.typing} type="text" name="commentTitle" value={this.state.commentTitle}/> </label></div>
-    <div><label> Comment : <input onInput={this.typing} type="text" name="commentField" value={this.state.commentField}/> </label></div>
-      <div><label>Nickname : <input onInput={this.typing} type="text" name="nickname" value={this.state.nickname}/> </label></div>
-    </form>
-      <div><button onClick={this.clicked}>Send</button></div> </div>
+    return <Container>
+      <Form>
+        <Form.Group controlId="Title">
+          <Form.Label> Title :  </Form.Label> <Form.Control onInput={this.typing} type="text" name="commentTitle" value={this.state.commentTitle}/>
+        </Form.Group>
+        <Form.Group controlId="Comment">
+          <Form.Label> Comment : </Form.Label><Form.Control onInput={this.typing} as="textarea" rows="5" name="commentField" value={this.state.commentField}/>
+        </Form.Group>
+        <Form.Group controlId="Nickname">
+          <Form.Label>Nickname : </Form.Label> <Form.Control onInput={this.typing} type="text" name="nickname" value={this.state.nickname}/>
+        </Form.Group>
+      </Form>
+      <Button onClick={this.clicked}>Send</Button> </Container>
 
   }
 }

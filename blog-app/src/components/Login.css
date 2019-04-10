@@ -17,6 +17,8 @@
 
 .login-button button:hover {
     background-color: #4CAF50;
+    text-decoration: none;
+    color: #1d2124;
 }
 
 a {

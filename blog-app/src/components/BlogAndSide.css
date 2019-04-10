@@ -12,15 +12,20 @@ ul {
     list-style-type: none;
 }
 
-.title-and-text{
-    float: right;
-    #border: red 1px solid;
+Col {
+    border: red 1px solid;
     text-align: justify;
-    width: 70%;
-    padding-left: 25px;
-    position: static;
 }
 
-.page{
-    padding-top: 60px;
+h1 {
+    text-align: center;
 }
+
+h3 {
+    font-style: italic;
+    color: #4e555b;
+    line-height: 0.8;
+    font-family: Serif;
+    text-align: right;
+}
+
