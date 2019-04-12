@@ -1,6 +1,7 @@
 package fi.tamk.tiko.lone.wanderer.blog.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +12,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.util.AntPathMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${blog.user.name}")
+    private String username;
+
+    @Value("${blog.user.password}")
+    private String password;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -38,8 +44,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder authentication)
             throws Exception {
         authentication.inMemoryAuthentication()
-                .withUser("admin")
-                .password(passwordEncoder().encode("secret"))
+                .withUser(username)
+                .password(passwordEncoder().encode(password))
                 .authorities("ADMIN");
     }
 
