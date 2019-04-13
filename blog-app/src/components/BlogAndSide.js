@@ -13,6 +13,7 @@ import './BlogAndSide.css';
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
 import Search from "./Search";
+import Like from "./Like";
 
 class BlogAndSide extends Component {
   BASE_URL = 'http://localhost:8080';
@@ -77,6 +78,7 @@ class BlogAndSide extends Component {
                 <h3>{this.state.blogs[this.state.current].author} {this.state.blogs[this.state.current].creationDate}</h3>
                 <p>{this.state.blogs[this.state.current].post.split('\n').map((item, key) => (
                   <span key={key}>{item}<br/></span>))}</p>
+                <Like blogId={this.state.blogs[this.state.current].id} likes={this.state.blogs[this.state.current].likes}/>
               </Col>
               <Col md={{order: 1, span: "auto"}}>
                 <h4>Search for blog posts:</h4>

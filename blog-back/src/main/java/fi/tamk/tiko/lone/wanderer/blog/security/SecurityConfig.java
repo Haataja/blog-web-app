@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/posts").permitAll()
                 .antMatchers("/comment/*").permitAll()
-                .antMatchers("/admin").hasAuthority("ADMIN")
+                .antMatchers("/posts/like/*").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().defaultSuccessUrl("/admin")
