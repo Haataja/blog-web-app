@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 
 
 class ListItem  extends Component{
-  BASE_URL = 'http://localhost:8080/posts/delete/';
+  BASE_URL = 'https://lone-wanderer-blog-app.herokuapp.com/posts/delete/';
   constructor(props){
     super(props);
     this.listId = props.listId;

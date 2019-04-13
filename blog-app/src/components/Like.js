@@ -4,7 +4,7 @@ import "./Login.css";
 import Button from "react-bootstrap/Button";
 
 class Like  extends Component{
-  BASE_URL = 'http://localhost:8080';
+  BASE_URL = 'https://lone-wanderer-blog-app.herokuapp.com';
 
   constructor(props){
     super(props);

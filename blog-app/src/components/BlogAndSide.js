@@ -16,7 +16,7 @@ import Search from "./Search";
 import Like from "./Like";
 
 class BlogAndSide extends Component {
-  BASE_URL = 'http://localhost:8080';
+  BASE_URL = 'https://lone-wanderer-blog-app.herokuapp.com';
   listOfBlogTitles = [];
 
   constructor(props) {

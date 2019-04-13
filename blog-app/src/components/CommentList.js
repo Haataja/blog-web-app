@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 class CommentList  extends Component{
-  BASE_URL = 'http://localhost:8080/comment/delete/';
+  BASE_URL = 'https://lone-wanderer-blog-app.herokuapp.com/comment/delete/';
   constructor(props){
     super(props);
     this.blogId = props.blogId;
