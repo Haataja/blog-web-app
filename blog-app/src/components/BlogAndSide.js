@@ -40,7 +40,7 @@ class BlogAndSide extends Component {
     fetch(this.BASE_URL + '/posts').then(http => http.json()).then(json => {
       let state = {
         'blogs': json,
-        'titles': json.map((i, index) => <ListItem auht={this.state.auth} key={i.id} name={i.title} id={i.id}
+        'titles': json.map((i, index) => <ListItem auht={this.state.auth} key={index} name={i.title} id={i.id}
                                                    listId={index} click={this.change} update={this.updateList}/>),
         'current': this.state.current === -1 ? 0 : this.state.current,
         'modify': false
@@ -78,7 +78,7 @@ class BlogAndSide extends Component {
                 <h3>{this.state.blogs[this.state.current].author} {this.state.blogs[this.state.current].creationDate}</h3>
                 <p>{this.state.blogs[this.state.current].post.split('\n').map((item, key) => (
                   <span key={key}>{item}<br/></span>))}</p>
-                <Like blogId={this.state.blogs[this.state.current].id} likes={this.state.blogs[this.state.current].likes}/>
+                <Like update={this.updateList} blogId={this.state.blogs[this.state.current].id} likes={this.state.blogs[this.state.current].likes}/>
               </Col>
               <Col md={{order: 1, span: "auto"}}>
                 <h4>Search for blog posts:</h4>

@@ -9,14 +9,13 @@ class BlogPostForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.blogId = props.blogId;
     this.clickedFunction = props.buttonClicked;
     this.clicked = this.clicked.bind(this);
     this.typing = this.typing.bind(this);
   }
 
   clicked(event) {
-    console.log("Data sent to back");
+    // console.log("Data sent to back");
     this.postData(this.BASE_URL + 'posts/add', {
       'title': this.state.title,
       'post': this.state.post, 'author': this.state.author
@@ -47,7 +46,6 @@ class BlogPostForm extends Component {
   }
 
   render() {
-    this.blogId = this.props.blogId;
     return <div><Form>
       <Form.Group controlId="Title">
         <Form.Label>Title :</Form.Label> <Form.Control onInput={this.typing} type="text" name="title"
