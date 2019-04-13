@@ -90,7 +90,7 @@ public class BlogController {
 
     @RequestMapping("/posts/like/{postID}")
     public ResponseEntity<Integer> likePost(@PathVariable long postID){
-        log.debug("Getting a like");
+        //log.debug("Getting a like");
         if(blogRepository.findById(postID).isPresent()){
             BlogPost blogPost = blogRepository.findById(postID).get();
             blogPost.setLikes(blogPost.getLikes() + 1);

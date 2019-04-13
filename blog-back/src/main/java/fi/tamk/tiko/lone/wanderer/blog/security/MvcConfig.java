@@ -14,7 +14,5 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addMapping("/comment/**")
                 .allowedOrigins("*")
                 .allowedMethods("GET", "OPTIONS", "POST", "PUT", "DELETE");
-        /*egistry.addMapping("/comment/**")
-                .allowedOrigins("*");*/
     }
 }
