@@ -29,3 +29,13 @@ h3 {
     text-align: right;
 }
 
+h4 {
+    font-style: italic;
+    color: #4e555b;
+    line-height: 0.8;
+    font-family: Serif;
+    text-align: justify;
+    margin-top: 10px;
+}
+
+

@@ -12,9 +12,11 @@ import Row from "react-bootstrap/Row";
 import './BlogAndSide.css';
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Button from "react-bootstrap/Button";
+import Search from "./Search";
 
 class BlogAndSide extends Component {
   BASE_URL = 'http://localhost:8080';
+  listOfBlogTitles = [];
 
   constructor(props) {
     super(props);
@@ -22,11 +24,11 @@ class BlogAndSide extends Component {
     this.updateList = this.updateList.bind(this);
     this.change = this.change.bind(this);
     this.toggleModify = this.toggleModify.bind(this);
+    this.filter = this.filter.bind(this);
   }
 
   componentDidMount() {
     this.updateList();
-    //this.checkLogIn();
   }
 
   toggleModify() {
@@ -44,19 +46,22 @@ class BlogAndSide extends Component {
       };
       //console.log('here '  + state.blogs[0].id);
       this.setState(state);
+      this.listOfBlogTitles = state.titles;
     });
   }
-
-
-  /*checkLogIn(){
-    fetch(this.BASE_URL + '/auth',{mode: 'no-cors'}).then(http =>http.json()).then(() =>this.setState({'auth':true})).catch((e) => this.setState({'auth':false}))
-  }*/
 
 
   change(listId) {
     //console.log(listId);
     let state = {'current': listId};
     this.setState(state);
+  }
+
+  filter(searchText){
+    let list = this.listOfBlogTitles.filter(i => {
+      return i.props.name.toLowerCase().search(searchText.toLowerCase()) !== -1;
+    });
+    this.setState({'titles': list});
   }
 
   render() {
@@ -74,6 +79,9 @@ class BlogAndSide extends Component {
                   <span key={key}>{item}<br/></span>))}</p>
               </Col>
               <Col md={{order: 1, span: "auto"}}>
+                <h4>Search for blog posts:</h4>
+                <Search callBack={this.filter}/>
+                <h4>Blog posts:</h4>
                 <ul>{this.state.titles}</ul>
               </Col>
             </Row></Container>
@@ -102,6 +110,9 @@ class BlogAndSide extends Component {
                         update={this.updateList}/>
               </Col>
               <Col md={{order: 1, span: 3}}>
+                <h4>Search for blog posts:</h4>
+                <Search callBack={this.filter}/>
+                <h4>Blog posts:</h4>
                 <ul>{this.state.titles}</ul>
                 <h2>Create new blog post</h2>
                 <BlogPostForm update={this.updateList}/>

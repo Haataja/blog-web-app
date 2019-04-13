@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import "./Login.css";
+import Button from "react-bootstrap/Button";
 
 class Login  extends Component{
 
@@ -21,13 +22,13 @@ class Login  extends Component{
   render(){
     this.auth = this.props.auth;
     if(this.auth){
-      return <div className="login-button"><button>
-        <Link style={{display: 'block', height: '100%'}} to="/logout" onClick={this.clicked}>Logout</Link>
-      </button></div>;
+      return <div className="login-button"><Button>
+        <Link to="/logout" onClick={this.clicked}>Logout</Link>
+      </Button></div>;
     } else {
-      return <div className="login-button"><button>
+      return <div className="login-button"><Button>
         <Link to="/login"  onClick={this.clicked}>Login</Link>
-      </button></div>;
+      </Button></div>;
     }
 
   }

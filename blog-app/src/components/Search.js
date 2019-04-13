@@ -8,10 +8,12 @@ class Search extends Component{
 
   typing(event){
     this.setState({[event.target.name]: event.target.value});
+    this.props.callBack(event.target.value);
   }
 
   render(){
-    return <input onInput={this.typing} type="text" name="search"/>
+    return <input className="form-control" onInput={this.typing} type="text" name="search"  aria-label="Small"
+                  aria-describedby="inputGroup-sizing-sm" placeholder="Search"/>
   }
 }
 export default Search;
