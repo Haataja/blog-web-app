@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 
 class Modify extends Component {
-  BASE_URL = 'https://lone-wanderer-blog-app.herokuapp.com/';
+  BASE_URL = 'http://localhost:8080/';
 
   constructor(props) {
     super(props);
