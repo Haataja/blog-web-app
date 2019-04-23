@@ -20,6 +20,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+/**
+ * Loads default data to H2-database at the start of the application.
+ */
 @Component
 public class DataLoader implements ApplicationRunner {
 

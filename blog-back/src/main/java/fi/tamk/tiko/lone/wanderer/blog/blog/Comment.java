@@ -14,6 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
+/**
+ * Java model for the database table Comment.
+ */
 @Entity
 public class Comment {
     @Id
@@ -28,51 +31,100 @@ public class Comment {
     private String commentTitle;
     private String nickname;
 
+    /**
+     * Default constructor.
+     */
     public Comment() {
     }
 
+    /**
+     * Constructor with parameters.
+     * @param commentField The text of the comment.
+     * @param commentTitle The title of the comment.
+     * @param nickname The nickname of the person who left the comment.
+     */
     public Comment(String commentField, String commentTitle, String nickname) {
         this.commentField = commentField;
         this.commentTitle = commentTitle;
         this.nickname = nickname;
     }
 
+    /**
+     * Gets the blog post that comment is commented to.
+     * @return the blog post that comment is commented to.
+     */
     public BlogPost getBlogPost() {
         return blogPost;
     }
 
+    /**
+     * Sets the blog post that comment is commented to.
+     * @param blogPost the blog post that comment is commented to.
+     */
     public void setBlogPost(BlogPost blogPost) {
         this.blogPost = blogPost;
     }
 
+    /**
+     * Gets the id of the comment.
+     * @return the id of the comment.
+     */
     public long getId() {
         return id;
     }
 
+    /**
+     * Sets the id of the comment.
+     * @param id the id of the comment.
+     */
     public void setId(long id) {
         this.id = id;
     }
 
+    /**
+     * Gets the text of the comment.
+     * @return the text of the comment.
+     */
     public String getCommentField() {
         return commentField;
     }
 
+    /**
+     * Sets the text of the comment.
+     * @param commentField the text of the comment.
+     */
     public void setCommentField(String commentField) {
         this.commentField = commentField;
     }
 
+    /**
+     * Gets the title of the comment.
+     * @return the title of the comment.
+     */
     public String getCommentTitle() {
         return commentTitle;
     }
 
+    /**
+     * Sets the title of the comment.
+     * @param commentTitle the title of the comment.
+     */
     public void setCommentTitle(String commentTitle) {
         this.commentTitle = commentTitle;
     }
 
+    /**
+     * Gets the nickname of the person who left the comment.
+     * @return the nickname of the person who left the comment.
+     */
     public String getNickname() {
         return nickname;
     }
 
+    /**
+     * Sets nickname of the person who left the comment.
+     * @param nickname nickname of the person who left the comment.
+     */
     public void setNickname(String nickname) {
         this.nickname = nickname;
     }

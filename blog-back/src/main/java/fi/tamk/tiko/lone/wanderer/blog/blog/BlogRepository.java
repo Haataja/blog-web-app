@@ -12,6 +12,14 @@ package fi.tamk.tiko.lone.wanderer.blog.blog;
 
 import org.springframework.data.repository.CrudRepository;
 
+/**
+ * Class for handling database events.
+ */
 public interface BlogRepository extends CrudRepository<BlogPost,Long> {
+
+    /**
+     * Gets all posts at the database so that the newest one is first.
+     * @return all posts at the database so that the newest one is first.
+     */
     Iterable<BlogPost> findAllByOrderByIdDesc();
 }

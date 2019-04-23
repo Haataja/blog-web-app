@@ -17,10 +17,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * Base controller handles the view after login.
+ */
 @Controller
 public class BaseController {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
+    /**
+     * Redirects the view to index that is handled by frontend.
+     * @return View determined by react.
+     */
     @RequestMapping(value = {"/", "/admin"})
     public ModelAndView getLoginInfo() {
         return new ModelAndView("index.html");

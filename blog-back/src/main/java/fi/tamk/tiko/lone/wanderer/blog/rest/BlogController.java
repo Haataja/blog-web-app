@@ -22,21 +22,40 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class BlogController {
+    /**
+     * Logger for logging.
+     */
     Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private BlogRepository blogRepository;
 
 
+    /**
+     * Gets all the blog so that the firs is the latest.
+     * @return 200 and blogs.
+     */
     @RequestMapping("/posts")
     public ResponseEntity<Iterable<BlogPost>> getPosts(){
         return new ResponseEntity<>(blogRepository.findAllByOrderByIdDesc(), HttpStatus.OK);
     }
 
+    /**
+     * Adds post to the database.
+     * @param blogPost Post that is added.
+     * @return Response entity.
+     */
     @PostMapping("/posts/add")
     public ResponseEntity<?> addPost(@RequestBody BlogPost blogPost){
         return new ResponseEntity<>(blogRepository.save(blogPost), HttpStatus.OK);
     }
 
+    /**
+     * Modifies the blog post.
+     * @param blogPost Modified post.
+     * @param id the id of the post that is modified.
+     * @return Response entity.
+     */
     @PostMapping("/posts/modify/{id}")
     public ResponseEntity<?> modifyPost(@RequestBody BlogPost blogPost, @PathVariable long id){
         //log.debug("POST: {}", blogPost.getPost());
@@ -51,6 +70,11 @@ public class BlogController {
         }
     }
 
+    /**
+     * Deletes the post from the database.
+     * @param id the id of the post that is deleted.
+     * @return Response entity.
+     */
     @RequestMapping("/posts/delete/{id}")
     public ResponseEntity<?> deletePost(@PathVariable long id){
         if(blogRepository.findById(id).isPresent()){
@@ -61,6 +85,12 @@ public class BlogController {
         }
     }
 
+    /**
+     * Adds comment to the blog post.
+     * @param id the id of the post that is commented of.
+     * @param comment Comment.
+     * @return Response entity.
+     */
     @PostMapping("/comment/{id}")
     public ResponseEntity<?> addComment(@PathVariable long id,@RequestBody Comment comment){
         log.debug("id: {} and comment {}", id, comment.toString());
@@ -76,6 +106,12 @@ public class BlogController {
         }
     }
 
+    /**
+     * Deletes comment on post.
+     * @param postID Id of the post that the comment is on.
+     * @param commentId Id of the comment that is deleted.
+     * @return Response entity.
+     */
     @RequestMapping("/comment/delete/{postID}")
     public ResponseEntity<?> deleteComment(@PathVariable long postID, @RequestParam long commentId){
         if(blogRepository.findById(postID).isPresent()){
@@ -88,6 +124,11 @@ public class BlogController {
         }
     }
 
+    /**
+     * Adds a like to post.
+     * @param postID Id of the post that is liked.
+     * @return Response entity.
+     */
     @RequestMapping("/posts/like/{postID}")
     public ResponseEntity<Integer> likePost(@PathVariable long postID){
         //log.debug("Getting a like");

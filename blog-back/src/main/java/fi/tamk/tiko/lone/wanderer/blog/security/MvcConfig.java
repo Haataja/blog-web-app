@@ -4,7 +4,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
+/**
+ * Allows connection from other http-servers, only used in development.
+ */
 public class MvcConfig implements WebMvcConfigurer {
 
     public void addCorsMappings(CorsRegistry registry) {
